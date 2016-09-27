@@ -41,5 +41,23 @@ namespace MyFirstAPI.Controllers
             return CreatedAtRoute("GetDavidBowieEra", new { id = era.Key }, era);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, [FromBody] DavidBowieEra era)
+        {
+            if (era == null || era.Key != id)
+            {
+                return BadRequest();
+            }
+
+            var DavidBowieEra = DavidBowieEras.Find(id);
+            if (DavidBowieEra == null)
+            {
+                return NotFound();
+            }
+
+            DavidBowieEras.Update(era);
+            return new NoContentResult();
+        }
+
     }
 }
