@@ -59,5 +59,25 @@ namespace MyFirstAPI.Controllers
             return new NoContentResult();
         }
 
+        [HttpPatch("{id}")]
+        public IActionResult Update([FromBody] DavidBowieEra era, string id)
+        {
+            if (era == null)
+            {
+                return BadRequest();
+            }
+
+            var davidBowieEra = DavidBowieEras.Find(id);
+            if (davidBowieEra == null)
+            {
+                return NotFound();
+            }
+
+            era.Key = davidBowieEra.Key;
+
+            DavidBowieEras.Update(era);
+            return new NoContentResult();
+        }
+
     }
 }
