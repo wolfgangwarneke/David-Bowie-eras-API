@@ -80,6 +80,36 @@ namespace MyFirstAPI.Controllers
             return new NoContentResult();
         }
 
+        [HttpPost("{id}/upvote")]
+        public IActionResult UpVote(string id)
+        {
+            var davidBowieEra = DavidBowieEras.Find(id);
+            if (davidBowieEra == null)
+            {
+                return NotFound();
+            }
+
+            davidBowieEra.UpVotes ++;
+
+            DavidBowieEras.Update(davidBowieEra);
+            return new NoContentResult();
+        }
+
+        [HttpPost("{id}/downvote")]
+        public IActionResult DownVote(string id)
+        {
+            var davidBowieEra = DavidBowieEras.Find(id);
+            if (davidBowieEra == null)
+            {
+                return NotFound();
+            }
+
+            davidBowieEra.DownVotes++;
+
+            DavidBowieEras.Update(davidBowieEra);
+            return new NoContentResult();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
