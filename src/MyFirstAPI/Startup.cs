@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MyFirstAPI.Models;
 
 namespace MyFirstAPI
 {
@@ -38,6 +39,8 @@ namespace MyFirstAPI
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
+            services.AddSingleton<IDavidBowieEraRepository, DavidBowieEraRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
