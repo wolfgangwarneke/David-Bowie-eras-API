@@ -79,5 +79,18 @@ namespace MyFirstAPI.Controllers
             return new NoContentResult();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+        {
+            var davidBowieEra = DavidBowieEras.Find(id);
+            if (davidBowieEra == null)
+            {
+                return NotFound();
+            }
+
+            DavidBowieEras.Remove(id);
+            return new NoContentResult();
+        }
+
     }
 }
