@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MyFirstAPI.Models;
+using System;
 
 namespace MyFirstAPI.Controllers
 {
@@ -92,5 +93,14 @@ namespace MyFirstAPI.Controllers
             return new NoContentResult();
         }
 
+        [HttpGet("timesincebowiedied")]
+        public string Version()
+        {
+            DateTime bowieDate = new DateTime(2016, 1, 10, 12, 0, 0);
+            DateTime currentDate = DateTime.Now;
+            int difference = (int) (currentDate - bowieDate).TotalDays;
+            return "It's been " + difference.ToString() + " days since Bowie died.";
+
+        }
     }
 }
