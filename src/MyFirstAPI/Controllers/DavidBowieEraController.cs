@@ -4,7 +4,7 @@ using MyFirstAPI.Models;
 
 namespace MyFirstAPI.Controllers
 {
-    [Route("api/{controller}")]
+    [Route("api/[controller]")]
     public class DavidBowieEraController : Controller
     {
         public DavidBowieEraController(IDavidBowieEraRepository davidBowieEras)
@@ -28,7 +28,18 @@ namespace MyFirstAPI.Controllers
                 return NotFound();
             }
             return new ObjectResult(era);
-
         }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] DavidBowieEra era)
+        {
+            if (era == null)
+            {
+                return BadRequest();
+            }
+            DavidBowieEras.Add(era);
+            return CreatedAtRoute("GetDavidBowieEra", new { id = era.Key }, era);
+        }
+
     }
 }

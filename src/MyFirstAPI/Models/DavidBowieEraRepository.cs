@@ -13,6 +13,7 @@ namespace MyFirstAPI.Models
         public DavidBowieEraRepository()
         {
             Add(new DavidBowieEra { Name = "Era1" });
+            Add(new DavidBowieEra { Name = "Era2" });
         }
 
         public IEnumerable<DavidBowieEra> GetAll()
